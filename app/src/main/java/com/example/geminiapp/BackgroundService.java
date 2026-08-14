@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
+import android.content.pm.ServiceInfo;
 import android.os.Build;
 import android.os.IBinder;
 
@@ -29,13 +30,17 @@ public class BackgroundService extends Service {
                 .setSmallIcon(android.R.drawable.ic_menu_info_details)
                 .build();
 
-        // サービスをフォアグラウンド（常駐）として開始
-        startForeground(1, notification);
+        // 🛠️ Android 14以降の安全な常駐タイプ（DATA_SYNC）を指定して開始します
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(1, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
+        } else {
+            startForeground(1, notification);
+        }
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return START_STICKY; // 強制終了されても自動で即再起動する設定
+        return START_STICKY;
     }
 
     @Override
