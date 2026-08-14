@@ -11,6 +11,11 @@
         android:label="Gemini Ultimate"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+
+        <!-- 🛠️ Android 14要件：常駐権限（specialUse）を使う正当な理由を宣言するメタデータを追加 -->
+        <property
+            android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+            android:value="This app keeps the Gemini WebView alive in the background to maintain user sessions and real-time interactions." />
         
         <activity
             android:name=".MainActivity"
@@ -18,12 +23,10 @@
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <!-- 🛠️ ここが重なっていたのを「android:name」に修正しました -->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- 🛠️ ここも「android:name」に綺麗に修正しました -->
         <service
             android:name=".BackgroundService"
             android:enabled="true"
