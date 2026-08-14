@@ -12,7 +12,7 @@ public class MainActivity extends Activity {
     private static WebView mWebView; // 静的変数にしてメモリ上に強力に保持
 
     @Override
-    protected void Bundle) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // 常駐サービス（通知表示）を起動
