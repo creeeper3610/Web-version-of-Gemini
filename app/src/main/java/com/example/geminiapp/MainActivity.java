@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
                 }
             });
 
-            mWebView.loadUrl("https://google.com");
+            mWebView.loadUrl("https://gemini.google.com");
         }
 
         // 現在の画面にWebViewを貼り付ける
