@@ -3,7 +3,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <!-- 🛠️ トラブルの元になる特殊権限（specialUse）を、確実で安全な「dataSync」権限に変更しました -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -22,18 +23,12 @@
             </intent-filter>
         </activity>
 
+        <!-- 🛠️ エラーの原因だった PROPERTY タグを完全に削除し、安全なデータ同期タイプに指定しました -->
         <service
             android:name=".BackgroundService"
             android:enabled="true"
             android:exported="false"
-            android:foregroundServiceType="specialUse">
-            
-            <!-- 🛠️ PROPERTYタグを正しい場所（serviceタグの内側）に移動しました -->
-            <property
-                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-                android:value="This app keeps the Gemini WebView alive in the background to maintain user sessions and real-time interactions." />
-                
-        </service>
+            android:foregroundServiceType="dataSync" />
             
     </application>
 
