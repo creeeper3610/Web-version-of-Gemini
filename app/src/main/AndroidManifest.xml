@@ -18,11 +18,12 @@
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <!-- 🛠️ ここが重なっていたのを「android:name」に修正しました -->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- 常駐サービスを登録 -->
+        <!-- 🛠️ ここも「android:name」に綺麗に修正しました -->
         <service
             android:name=".BackgroundService"
             android:enabled="true"
